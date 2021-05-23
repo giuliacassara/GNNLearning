@@ -1,0 +1,23 @@
+{
+    "os": "Linux-5.8.0-53-generic-x86_64-with-glibc2.10",
+    "python": "3.8.10",
+    "heartbeatAt": "2021-05-23T15:56:50.715112",
+    "startedAt": "2021-05-23T15:56:48.100013",
+    "docker": null,
+    "gpu": "GeForce RTX 3070",
+    "gpu_count": 1,
+    "cpu_count": 16,
+    "cuda": null,
+    "args": [],
+    "state": "running",
+    "program": "src/run.py",
+    "git": {
+        "remote": "git@github.com:giuliacassara/GNNLearning.git",
+        "commit": "a46f9358f46727e41487685f8dc18e111577f8d3"
+    },
+    "email": "giulia@hyperable.io",
+    "root": "/home/giulia/GNNLearning",
+    "host": "wintermute",
+    "username": "giulia",
+    "executable": "/home/giulia/anaconda3/envs/gnn/bin/python"
+}

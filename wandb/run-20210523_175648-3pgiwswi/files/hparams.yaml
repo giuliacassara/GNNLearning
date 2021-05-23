@@ -1,0 +1,80 @@
+data:
+  datamodule:
+    _target_: src.pl_data.datamodule.MyDataModule
+    val_percentage: 0.15
+    datasets:
+      train:
+        _target_: src.pl_data.dataset.MyDataset
+        name: MNIST_TRAIN
+        train: true
+        path: ${oc.env:MNIST}
+      test:
+      - _target_: src.pl_data.dataset.MyDataset
+        name: MNIST_TEST
+        train: false
+        path: ${oc.env:MNIST}
+    num_workers:
+      train: 8
+      val: 4
+      test: 4
+    batch_size:
+      train: 32
+      val: 16
+      test: 16
+logging:
+  n_elements_to_log: 64
+  val_check_interval: 1.0
+  progress_bar_refresh_rate: 20
+  wandb:
+    project: gnn-learning
+    entity: giuliacassara
+    log_model: true
+    mode: online
+  wandb_watch:
+    log: all
+    log_freq: 100
+  lr_monitor:
+    logging_interval: step
+    log_momentum: false
+model:
+  _target_: src.pl_modules.model.MyModel
+optim:
+  optimizer:
+    _target_: torch.optim.Adam
+    lr: 0.001
+    betas:
+    - 0.9
+    - 0.999
+    eps: 1.0e-08
+    weight_decay: 0
+  use_lr_scheduler: true
+  lr_scheduler:
+    _target_: torch.optim.lr_scheduler.CosineAnnealingWarmRestarts
+    T_0: 10
+    T_mult: 2
+    eta_min: 0
+    last_epoch: -1
+    verbose: true
+train:
+  deterministic: false
+  random_seed: 42
+  pl_trainer:
+    fast_dev_run: false
+    gpus: 1
+    precision: 32
+    max_steps: 1000
+    accumulate_grad_batches: 8
+    num_sanity_val_steps: 2
+    gradient_clip_val: 10.0
+  monitor_metric: val_loss
+  monitor_metric_mode: min
+  early_stopping:
+    patience: 42
+    verbose: false
+  model_checkpoints:
+    save_top_k: 2
+    verbose: false
+core:
+  version: 0.0.1
+  tags:
+  - mnist

@@ -1,0 +1,194 @@
+wandb_version: 1
+
+_wandb:
+  desc: null
+  value:
+    cli_version: 0.10.15
+    framework: lightning
+    is_jupyter_run: false
+    is_kaggle_kernel: false
+    python_version: 3.8.10
+    t:
+      1:
+      - 1
+      - 9
+      4: 3.8.10
+      5: 0.10.15
+core/tags:
+  desc: null
+  value:
+  - mnist
+core/version:
+  desc: null
+  value: 0.0.1
+data/datamodule/_target_:
+  desc: null
+  value: src.pl_data.datamodule.MyDataModule
+data/datamodule/batch_size/test:
+  desc: null
+  value: 16
+data/datamodule/batch_size/train:
+  desc: null
+  value: 32
+data/datamodule/batch_size/val:
+  desc: null
+  value: 16
+data/datamodule/datasets/test:
+  desc: null
+  value:
+  - _target_: src.pl_data.dataset.MyDataset
+    name: MNIST_TEST
+    path: /tmp
+    train: false
+data/datamodule/datasets/train/_target_:
+  desc: null
+  value: src.pl_data.dataset.MyDataset
+data/datamodule/datasets/train/name:
+  desc: null
+  value: MNIST_TRAIN
+data/datamodule/datasets/train/path:
+  desc: null
+  value: /tmp
+data/datamodule/datasets/train/train:
+  desc: null
+  value: true
+data/datamodule/num_workers/test:
+  desc: null
+  value: 4
+data/datamodule/num_workers/train:
+  desc: null
+  value: 8
+data/datamodule/num_workers/val:
+  desc: null
+  value: 4
+data/datamodule/val_percentage:
+  desc: null
+  value: 0.15
+logging/lr_monitor/log_momentum:
+  desc: null
+  value: false
+logging/lr_monitor/logging_interval:
+  desc: null
+  value: step
+logging/n_elements_to_log:
+  desc: null
+  value: 64
+logging/progress_bar_refresh_rate:
+  desc: null
+  value: 20
+logging/val_check_interval:
+  desc: null
+  value: 1.0
+logging/wandb/entity:
+  desc: null
+  value: giuliacassara
+logging/wandb/log_model:
+  desc: null
+  value: true
+logging/wandb/mode:
+  desc: null
+  value: online
+logging/wandb/project:
+  desc: null
+  value: gnn-learning
+logging/wandb_watch/log:
+  desc: null
+  value: all
+logging/wandb_watch/log_freq:
+  desc: null
+  value: 100
+model/_target_:
+  desc: null
+  value: src.pl_modules.model.MyModel
+optim/lr_scheduler/T_0:
+  desc: null
+  value: 10
+optim/lr_scheduler/T_mult:
+  desc: null
+  value: 2
+optim/lr_scheduler/_target_:
+  desc: null
+  value: torch.optim.lr_scheduler.CosineAnnealingWarmRestarts
+optim/lr_scheduler/eta_min:
+  desc: null
+  value: 0
+optim/lr_scheduler/last_epoch:
+  desc: null
+  value: -1
+optim/lr_scheduler/verbose:
+  desc: null
+  value: true
+optim/optimizer/_target_:
+  desc: null
+  value: torch.optim.Adam
+optim/optimizer/betas:
+  desc: null
+  value:
+  - 0.9
+  - 0.999
+optim/optimizer/eps:
+  desc: null
+  value: 1.0e-08
+optim/optimizer/lr:
+  desc: null
+  value: 0.001
+optim/optimizer/weight_decay:
+  desc: null
+  value: 0
+optim/use_lr_scheduler:
+  desc: null
+  value: true
+stats/params_not_trainable:
+  desc: null
+  value: 0
+stats/params_total:
+  desc: null
+  value: 11175370
+stats/params_trainable:
+  desc: null
+  value: 11175370
+train/deterministic:
+  desc: null
+  value: false
+train/early_stopping/patience:
+  desc: null
+  value: 42
+train/early_stopping/verbose:
+  desc: null
+  value: false
+train/model_checkpoints/save_top_k:
+  desc: null
+  value: 2
+train/model_checkpoints/verbose:
+  desc: null
+  value: false
+train/monitor_metric:
+  desc: null
+  value: val_loss
+train/monitor_metric_mode:
+  desc: null
+  value: min
+train/pl_trainer/accumulate_grad_batches:
+  desc: null
+  value: 8
+train/pl_trainer/fast_dev_run:
+  desc: null
+  value: false
+train/pl_trainer/gpus:
+  desc: null
+  value: 1
+train/pl_trainer/gradient_clip_val:
+  desc: null
+  value: 10.0
+train/pl_trainer/max_steps:
+  desc: null
+  value: 1000
+train/pl_trainer/num_sanity_val_steps:
+  desc: null
+  value: 2
+train/pl_trainer/precision:
+  desc: null
+  value: 32
+train/random_seed:
+  desc: null
+  value: 42

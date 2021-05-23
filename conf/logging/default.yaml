@@ -7,7 +7,7 @@ progress_bar_refresh_rate: 20
 
 wandb:
   project: gnn-learning
-  entity: null
+  entity: giuliacassara
   log_model: True
   mode: 'online'
 

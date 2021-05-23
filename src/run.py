@@ -7,7 +7,7 @@ import omegaconf
 import pytorch_lightning as pl
 from hydra.core.hydra_config import HydraConfig
 from omegaconf import DictConfig, OmegaConf
-from pytorch_lightning import seed_everything, Callback
+from pytorch_lightning import Callback, seed_everything
 from pytorch_lightning.callbacks import (
     EarlyStopping,
     LearningRateMonitor,
@@ -41,7 +41,7 @@ def build_callbacks(cfg: DictConfig) -> List[Callback]:
             )
         )
 
-    if "model_checkpoints" in cfg.train:
+    if "model_checkpoints" in cfg.train.model_checkpoints:
         hydra.utils.log.info(f"Adding callback <ModelCheckpoint>")
         callbacks.append(
             ModelCheckpoint(
@@ -58,9 +58,9 @@ def build_callbacks(cfg: DictConfig) -> List[Callback]:
 def run(cfg: DictConfig) -> None:
     """
     Generic train loop
-
     :param cfg: run configuration, defined by Hydra in /conf
     """
+    print(cfg)
     if cfg.train.deterministic:
         seed_everything(cfg.train.random_seed)
 
