@@ -1,39 +1,23 @@
-from typing import Dict, Tuple, Union
 
-import hydra
-import omegaconf
-import pytorch_lightning as pl
-import torch
 from omegaconf import ValueNode
 from torch.utils.data import Dataset
-
-from src.common.utils import PROJECT_ROOT
+from torchvision.datasets import FashionMNIST
 
 
 class MyDataset(Dataset):
-    def __init__(self, name: ValueNode, path: ValueNode, **kwargs):
+    def __init__(self, name: ValueNode, path: ValueNode, train: bool, **kwargs):
         super().__init__()
         self.path = path
         self.name = name
+        self.train = train
+
+        self.mnist = FashionMNIST(path, train=train, download=True, **kwargs)
 
     def __len__(self) -> int:
-        raise NotImplementedError
+        return len(self.mnist)
 
-    def __getitem__(
-        self, index
-    ) -> Union[Dict[str, torch.Tensor], Tuple[torch.Tensor, torch.Tensor]]:
-        raise NotImplementedError
+    def __getitem__(self, index: int):
+        return self.mnist[index]
 
     def __repr__(self) -> str:
         return f"MyDataset({self.name=}, {self.path=})"
-
-
-@hydra.main(config_path=str(PROJECT_ROOT / "conf"), config_name="default")
-def main(cfg: omegaconf.DictConfig):
-    dataset: MyDataset = hydra.utils.instantiate(
-        cfg.data.datamodule.datasets.train, _recursive_=False
-    )
-
-
-if __name__ == "__main__":
-    main()

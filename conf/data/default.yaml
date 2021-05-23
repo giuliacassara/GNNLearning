@@ -1,21 +1,21 @@
+
 datamodule:
   _target_: src.pl_data.datamodule.MyDataModule
+
+  val_percentage: 0.15
 
   datasets:
     train:
       _target_: src.pl_data.dataset.MyDataset
-      name: YourTrainDatasetName
-      path: ${oc.env:YOUR_TRAIN_DATASET_PATH}
-
-    val:
-      - _target_: src.pl_data.dataset.MyDataset
-        name: YourValDatasetName
-        path: ${oc.env:YOUR_VAL_DATASET_PATH}
+      name: MNIST_TRAIN
+      train: True
+      path: ${oc.env:MNIST}
 
     test:
       - _target_: src.pl_data.dataset.MyDataset
-        name: YourTestDatasetName
-        path: ${oc.env:YOUR_TEST_DATASET_PATH}
+        name: MNIST_TEST
+        train: False
+        path: ${oc.env:MNIST}
 
   num_workers:
     train: 8
